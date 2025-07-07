@@ -17,13 +17,17 @@
                     <p class="mt-1 text-sm text-gray-600">
                         {{-- O campo created_at é um objeto Carbon, que tem métodos úteis --}}
                         Na SocialDev desde: {{ $user->created_at->format('d/m/Y') }} ({{ $user->created_at->diffForHumans() }})
-                    </p>
-                    
+                    </p>                    
                     <hr class="my-4">
-
                     <h4 class="font-semibold">Posts de {{ $user->name }}:</h4>
-                    {{-- Futuramente, a lista de posts do usuário virá aqui --}}
-                    <p class="mt-2">Em breve...</p>
+                    @forelse ($user->posts()->latest()->get() as $post)
+                        <div class="post-card mt-2 p-4 bg-gray-50 rounded">
+                            <h5 class="font-bold">{{ $post->title }}</h5>
+                            <p class="text-sm text-gray-600">{{ Str::limit($post->content, 100) }}</p> {{-- Exibe um resumo --}}
+                        </div>
+                    @empty
+                        <p class="mt-2">Este usuário ainda não publicou nada.</p>
+                    @endforelse
                 </div>
             </div>
         </div>

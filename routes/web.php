@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController; // Adicione este import
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -12,10 +13,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Vamos agrupar nossas rotas protegidas aqui
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/perfil/{user}', [ProfileController::class, 'show'])->name('profile.show');
+    
+    // Esta única linha cria 7 rotas para o CRUD de posts!
+    Route::resource('posts', PostController::class);
 });
 
 require __DIR__.'/auth.php';
