@@ -11,8 +11,13 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-        //
+    ->withMiddleware(function (Middleware $middleware) {
+        // ADICIONE ESTAS TRÊS LINHAS
+        $middleware->api(prepend: [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        ]);
+
+        // ... pode haver outras configurações aqui, como $middleware->validateCsrfTokens(...)
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

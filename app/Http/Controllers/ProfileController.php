@@ -64,10 +64,11 @@ class ProfileController extends Controller
      */
     public function show(User $user) // Note que não recebemos um $id, mas sim o objeto User completo!
     {
-        // A mágica já aconteceu. O Laravel já encontrou o usuário com o ID passado na URL.
-        // Agora, apenas retornamos a view e passamos o objeto $user para ela.
+        $isFollowing = auth()->user() ? auth()->user()->following->contains($user) : false;
+
         return view('profile.show', [
-            'user' => $user
+            'user' => $user,
+            'isFollowing' => $isFollowing
         ]);
     }
 }

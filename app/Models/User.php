@@ -51,4 +51,10 @@ class User extends Authenticatable
         // Um usuário (User) tem muitos (hasMany) posts (Post)
         return $this->hasMany(Post::class);
     }
+
+    public function following()
+    {
+        // Um usuário pode seguir muitos outros usuários
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'followed_id');
+    }
 }

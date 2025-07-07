@@ -1,11 +1,19 @@
 {{-- Usamos o layout principal que o Breeze nos deu --}}
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Perfil de') }} {{ $user->name }}
-        </h2>
+    <x-slot name="header">        
+        <div class="flex justify-between items-center">
+            <h3 class="text-lg font-medium">{{ $user->name }}</h3>
+            {{-- Apenas mostra o botão se estivermos logados e não for nosso próprio perfil --}}
+            @auth
+                @if(auth()->id() !== $user->id)
+                    <follow-button 
+                        :user-id="{{ $user->id }}" 
+                        :initial-is-following="{{ json_encode($isFollowing) }}">
+                    </follow-button>
+                @endif
+            @endauth
+        </div>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

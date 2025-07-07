@@ -41,7 +41,7 @@ const error = ref(null);    // Para guardar qualquer erro que ocorra
 onMounted(async () => {
   try {
     // 3. Usamos o axios para fazer uma requisição GET para o nosso endpoint
-    const response = await axios.get('/api/posts');
+    const response = await axios.get('/api/feed');
 
     // 4. Se a requisição for bem-sucedida, atualizamos o nosso estado
     posts.value = response.data;
