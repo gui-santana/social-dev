@@ -16,6 +16,7 @@
                         {{-- Usando nosso componente Vue! --}}
                         <hello-world></hello-world>
                         <counter-component></counter-component>
+                        <post-list></post-list>
                     </div>
                 </div>
             </div>
