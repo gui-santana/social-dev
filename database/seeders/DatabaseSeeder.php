@@ -13,11 +13,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Apaga os dados das tabelas para começar do zero (opcional, mas bom para testes)
+        // \App\Models\User::query()->delete();
+        // \App\Models\Post::query()->delete();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Cria 10 usuários falsos
+        \App\Models\User::factory(10)->create()->each(function ($user) {
+            // Para cada usuário criado, cria 5 posts falsos associados a ele
+            \App\Models\Post::factory(5)->create([
+                'user_id' => $user->id,
+            ]);
+        });
     }
 }
