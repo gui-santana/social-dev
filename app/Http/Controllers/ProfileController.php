@@ -15,7 +15,10 @@ class ProfileController extends Controller
      */
     public function show($username)
     {
-        // Por enquanto, a lógica é a mesma que tínhamos na rota
-        return "Você está vendo o perfil de: " . htmlspecialchars($username);
+        // O segundo argumento da função view() é um array de dados
+        // A chave do array ('username') se torna o nome da variável na View.
+        return view('perfil', [
+            'username' => $username
+        ]);
     }
 }
