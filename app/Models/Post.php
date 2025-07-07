@@ -9,5 +9,12 @@ class Post extends Model
 {
     use HasFactory; // <-- E ADICIONE ESTA LINHA
 
-    // O conteúdo da classe está aqui
+    /**
+     * Pega o usuário (User) que é o dono do Post.
+     */
+    public function user()
+    {
+        // Um Post pertence a (belongsTo) um User.
+        return $this->belongsTo(User::class);
+    }
 }
