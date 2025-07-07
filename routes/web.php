@@ -15,3 +15,19 @@ Route::get('/sobre', function () {
 Route::get('/perfil/{username}', [ProfileController::class, 'show']);
 
 Route::resource('posts', PostController::class);
+
+use App\Models\Post;
+use App\Models\User;
+
+Route::get('/eloquent-test', function () {
+    // Criar um novo post
+    $post = new Post();
+    $post->title = 'Post de Teste Eloquent';
+    $post->content = 'Conteúdo de teste...';
+    $post->user_id = User::first()->id; // Pega o ID do primeiro usuário do banco
+    $post->save();
+
+    // Buscar todos os posts e exibir
+    $posts = Post::all();
+    return $posts;
+});
