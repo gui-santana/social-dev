@@ -18,16 +18,37 @@
                         {{-- O campo created_at é um objeto Carbon, que tem métodos úteis --}}
                         Na SocialDev desde: {{ $user->created_at->format('d/m/Y') }} ({{ $user->created_at->diffForHumans() }})
                     </p>                    
-                    <hr class="my-4">
-                    <h4 class="font-semibold">Posts de {{ $user->name }}:</h4>
-                    @forelse ($user->posts()->latest()->get() as $post)
-                        <div class="post-card mt-2 p-4 bg-gray-50 rounded">
-                            <h5 class="font-bold">{{ $post->title }}</h5>
-                            <p class="text-sm text-gray-600">{{ Str::limit($post->content, 100) }}</p> {{-- Exibe um resumo --}}
+                    {{-- No arquivo show.blade.php, substitua a seção de posts por esta --}}
+                    <hr class="my-6 border-gray-300">
+
+                    {{-- Container principal para a lista de posts --}}
+                    <div class="mt-6">
+                        <h4 class="text-2xl font-bold text-gray-800">Posts de {{ $user->name }}</h4>
+                        
+                        <div class="mt-4 space-y-6">
+                            @forelse ($user->posts()->latest()->get() as $post)
+                                {{-- Card individual para cada post --}}
+                                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                                    
+                                    {{-- Cabeçalho do card com Flexbox para alinhar o título e a data --}}
+                                    <div class="flex justify-between items-center">
+                                        <h5 class="text-xl font-bold text-blue-600">{{ $post->title }}</h5>
+                                        <span class="text-sm font-light text-gray-500">{{ $post->created_at->diffForHumans() }}</span>
+                                    </div>
+
+                                    {{-- Conteúdo do post (resumo) --}}
+                                    <p class="mt-2 text-gray-700">
+                                        {{ Str::limit($post->content, 200) }}
+                                    </p>
+                                </div>
+                            @empty
+                                {{-- Mensagem caso não haja posts --}}
+                                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
+                                    <p>Este usuário ainda não publicou nada.</p>
+                                </div>
+                            @endforelse
                         </div>
-                    @empty
-                        <p class="mt-2">Este usuário ainda não publicou nada.</p>
-                    @endforelse
+                    </div>
                 </div>
             </div>
         </div>

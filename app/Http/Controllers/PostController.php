@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Post; // <-- ADICIONE ESTA LINHA
 
 class PostController extends Controller
 {
@@ -13,7 +15,7 @@ class PostController extends Controller
     public function index()
     {
         // Pega os posts apenas do usuário autenticado, do mais novo para o mais antigo
-        $posts = auth()->user()->posts()->latest()->get();
+        $posts = Auth::user()->posts()->latest()->get();
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -37,7 +39,7 @@ class PostController extends Controller
         ]);
 
         // Cria o post associado ao usuário logado
-        auth()->user()->posts()->create($validated);
+        Auth::user()->posts()->create($validated);
 
         return redirect()->route('posts.index')->with('success', 'Post criado com sucesso!');
     }
