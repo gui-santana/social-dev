@@ -33,6 +33,12 @@ RUN chmod +x /var/www/html/start.sh
 # As flags são para otimização em ambiente de produção.
 RUN composer install --optimize-autoloader --no-dev
 
+# Instala as dependências do frontend
+RUN npm install
+
+# Compila os assets para produção (isto cria a pasta /public/build e o manifest.json)
+RUN npm run build
+
 # Altera a propriedade dos ficheiros para o utilizador do Apache, evitando problemas de permissão.
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
