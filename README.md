@@ -1,61 +1,139 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SocialDev - Rede Social com Laravel e Vue.js
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Uma micro-rede social para desenvolvedores construída do zero, utilizando um ecossistema de frameworks modernos. Este projeto foi o resultado final de um curso completo de desenvolvimento web Full-Stack, abrangendo desde os fundamentos do PHP até o deploy de uma aplicação complexa na nuvem.
 
-## About Laravel
+![Badge de Deploy do Render](https://render.com/images/deploy-to-render-button.svg)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 📷 Screenshot da Aplicação
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+[**➡️ Acesse a aplicação ao vivo aqui!**](https://social-dev-app.onrender.com)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### ✨ Principais Funcionalidades
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+* **Autenticação Completa:** Sistema seguro de cadastro, login e logout de usuários.
+* **Perfis de Usuário:** Páginas de perfil públicas para cada usuário.
+* **CRUD de Posts:** Usuários autenticados podem criar, visualizar, editar e deletar seus próprios posts.
+* **Sistema de "Seguir":** Um usuário pode seguir e deixar de seguir outros usuários.
+* **Feed Pessoal:** Um feed na dashboard que mostra os posts mais recentes das pessoas que o usuário segue.
+* **Upload de Arquivos:** Funcionalidade para upload de foto de perfil.
+* **Autorização:** Middlewares que garantem que um usuário só possa editar ou deletar seus próprios posts.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+### 💻 Stack de Tecnologias
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Este projeto foi construído utilizando as seguintes tecnologias e ferramentas:
 
-### Premium Partners
+* **Backend:**
+    * **PHP 8.2+**
+    * **Laravel 11+**
+    * **Eloquent ORM** (para interação com a base de dados)
+    * **Blade** (para templating)
+    * **API RESTful** para comunicação com o frontend.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+* **Frontend:**
+    * **JavaScript (ES6+)**
+    * **Vue.js 3** (para componentes reativos)
+    * **Tailwind CSS** (para estilização utility-first)
+    * **Vite** (para o build dos assets)
+    * **Axios** (para as requisições HTTP)
 
-## Contributing
+* **Banco de Dados:**
+    * **PostgreSQL** (em produção no Render)
+    * **MySQL** (em desenvolvimento local)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* **Infraestrutura e Deploy:**
+    * **Docker**
+    * **Render** (Plataforma como Serviço - PaaS)
+    * **Git & GitHub** (para versionamento e CI/CD)
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 🚀 Como Executar o Projeto Localmente
 
-## Security Vulnerabilities
+Siga os passos abaixo para configurar e rodar a aplicação no seu ambiente de desenvolvimento.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/gui-santana/social-dev.git](https://github.com/gui-santana/social-dev.git)
+    ```
 
-## License
+2.  **Navegue até a pasta do projeto:**
+    ```bash
+    cd social-dev
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+3.  **Instale as dependências do PHP:**
+    ```bash
+    composer install
+    ```
+
+4.  **Instale as dependências do JavaScript:**
+    ```bash
+    npm install
+    ```
+
+5.  **Crie o arquivo de ambiente:**
+    * Copie o arquivo de exemplo `.env.example` para um novo arquivo chamado `.env`.
+    ```bash
+    cp .env.example .env
+    ```
+
+6.  **Gere a chave da aplicação:**
+    ```bash
+    php artisan key:generate
+    ```
+
+7.  **Configure o `.env`:**
+    * Abra o arquivo `.env` e configure as suas credenciais do banco de dados local (MySQL).
+    ```dotenv
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=curso_php_db
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+
+8.  **Execute as migrations e popule o banco:**
+    * Este comando irá criar todas as tabelas e preenchê-las com dados de teste.
+    ```bash
+    php artisan migrate:fresh --seed
+    ```
+
+9.  **Crie o link de armazenamento:**
+    ```bash
+    php artisan storage:link
+    ```
+
+10. **Inicie os servidores:**
+    * Você precisará de dois terminais abertos.
+    * **Terminal 1 (Frontend):**
+        ```bash
+        npm run dev
+        ```
+    * **Terminal 2 (Backend):**
+        ```bash
+        php artisan serve
+        ```
+
+Pronto! A aplicação estará disponível em `http://127.0.0.1:8000`.
+
+---
+
+### 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+
+---
+
+### 📬 Contato
+
+**Guilherme Santana**
+
+* Email: [business@guilhermesantana.com.br](mailto:business@guilhermesantana.com.br)
+* GitHub: [@gui-santana](https://github.com/gui-santana)
