@@ -9,6 +9,7 @@ use App\Models\Post; // <-- ADICIONE ESTA LINHA
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -38,6 +39,7 @@ class PostController extends Controller
             'content' => 'required|string',
         ]);
 
+        // *** ADICIONE ESTA LINHA DE VOLTA ***
         // Cria o post associado ao usuário logado
         Auth::user()->posts()->create($validated);
 
@@ -57,19 +59,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        // Política de segurança: garante que o usuário só pode editar seus próprios posts
-        if (auth()->id() !== $post->user_id) {
-            abort(403); // Proibido
-        }
         return view('posts.edit', ['post' => $post]);
     }
 
     public function update(Request $request, Post $post)
-    {
-        if (auth()->id() !== $post->user_id) {
-            abort(403);
-        }
-        
+    {        
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
@@ -85,12 +79,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if (auth()->id() !== $post->user_id) {
-            abort(403);
-        }
-
         $post->delete();
 
         return redirect()->route('posts.index')->with('success', 'Post deletado com sucesso!');
     }
+    
 }

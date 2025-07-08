@@ -18,6 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         // ... pode haver outras configurações aqui, como $middleware->validateCsrfTokens(...)
+        // ADICIONE ESTE BLOCO PARA REGISTAR O NOVO ALIAS
+        $middleware->alias([
+            'post.owner' => \App\Http\Middleware\EnsureUserIsPostOwner::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
