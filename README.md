@@ -6,7 +6,7 @@ Uma micro-rede social para desenvolvedores construída do zero, utilizando um ec
 
 ---
 
-### 📷 Screenshot da Aplicação
+### Link da Aplicação
 
 [**➡️ Acesse a aplicação ao vivo aqui!**](https://social-dev-app.onrender.com)
 
