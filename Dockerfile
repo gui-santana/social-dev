@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-install pdo_mysql pgsql zip exif pcntl bcmath gd
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql zip exif pcntl bcmath gd
 
 # Instala o Composer globalmente.
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
