@@ -2,6 +2,17 @@
 <x-app-layout>
     <x-slot name="header">        
         <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                {{-- Exibe a foto de perfil ou um avatar padrão --}}
+                <img src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($user->email))) }}" 
+                    alt="{{ $user->name }}" 
+                    class="h-20 w-20 rounded-full object-cover">
+                
+                <div>
+                    <h3 class="text-2xl font-bold">{{ $user->name }}</h3>
+                    <p class="mt-1 text-sm text-gray-600">Email: {{ $user->email }}</p>
+                </div>
+            </div>
             <h3 class="text-lg font-medium">{{ $user->name }}</h3>
             {{-- Apenas mostra o botão se estivermos logados e não for nosso próprio perfil --}}
             @auth
