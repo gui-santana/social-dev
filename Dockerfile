@@ -25,6 +25,9 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copia os ficheiros da aplicação do seu computador para dentro do container.
 COPY . .
 
+# Dá permissão de execução ao nosso script de arranque
+RUN chmod +x /var/www/html/start.sh
+
 # Roda o 'composer install' para instalar as dependências do Laravel.
 # As flags são para otimização em ambiente de produção.
 RUN composer install --optimize-autoloader --no-dev
@@ -36,5 +39,8 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
-# Expõe a porta 80 para o mundo exterior.
+# Expõe a porta 80
 EXPOSE 80
+
+# Define o nosso script como o comando de arranque do container
+CMD ["/var/www/html/start.sh"]
