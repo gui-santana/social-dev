@@ -4,6 +4,16 @@ FROM php:8.2-apache
 # Define o diretório de trabalho dentro do container.
 WORKDIR /var/www/html
 
+# ADICIONE ESTE BLOCO PARA INSTALAR NODE.JS E NPM
+# Define a versão do Node.js
+ARG NODE_MAJOR=20
+# Descarrega e executa o script de instalação oficial do NodeSource
+RUN apt-get update && apt-get install -y ca-certificates curl gnupg \
+    && mkdir -p /etc/apt/keyrings \
+    && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list \
+    && apt-get update && apt-get install nodejs -y
+
 # Instala as dependências do sistema e extensões do PHP necessárias para o Laravel.
 # Isso inclui ferramentas para lidar com imagens (gd), zips, e o próprio git.
 RUN apt-get update && apt-get install -y \
